@@ -126,9 +126,9 @@ Just use the 'index' only on the fields that could be useful because use the 'in
 
   // POPULATE //
 
-* Works to acces to all the collections that we want inside our data base and makes queries between them in just one request.
+* Works to access to all the collections inside our data base that we want and makes queries between them in just one request.
 
-to use the .populate() method we need to put a reference (ref) in the model schema propertie that we want to use in the query.
+to use the .populate() method we need to put a reference (ref) in the model schema property that we want to use in the query.
 Then , in the query we use .pupulate() with the the 'path' property (where we are going to type the property) and the model that we want to use(model)
 
 Ej.:
