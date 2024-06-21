@@ -140,12 +140,58 @@ PUNTOS CLAVES DE VIDEO:
 <!-- PUNTOS CLAVES DE VIDEO:
 -->
 
+- 00:26:00 -> Instalar y configurar session-file-store en la app
+- 00:40:00 -> Instalar y configurar connect-mong-
 <!-- NOTAS:
 -->
 
 <Nota: Recordar que las cookies están del lado del cliente(navegador) y las sesiones del lado del servidor(back-end), por lo que no es recomendable manejar datos sencibles en las cookies ya que no es tan seguro.
 
-// CLASE 20 - Autenticación y autorización //
+- Pasos para usar session-file-store en app
+
+  - Instalar ----------------> npm i session-file-store
+  - Importar en app ---------> import FileStore from 'session-file-store' y almacenar en una variable: <!-- const fileStorage = FileStore(session) -->
+  - Configurar uso de persistencia con .use()
+  <!--
+  app.use(
+  session({
+    store: new fileStorage({ path: "./sessions", ttl: 100, retries: 0 }),
+    secret: config.SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+   -->
+
+- Usar connect-mongo en app, persistencia en base de datos
+  - Instalar ----------------> npm i connect-mongo
+  - Importar en app ----------> import MongoStore from "connect-mongo";
+  - Configurar uso de persistencia con .use()
+      <!-- 
+      app.use(
+      session({
+        store:MongoStore.create({
+          mongoUrl: config.MONGO_URI,
+          TTL: 15
+        })
+        secret: config.SECRET,
+        resave: true,
+        saveUninitialized: true,
+      })
+       -->
+
+  * Para hacer un login es necesario que la plantilla renderice el req.session para que ésta muestre la información del usuario una vez que éste acceda. 
+  Desde la ruta de '/login' se debe redireccionar al usario a su perfil si es qué el usuario y contraseña son correctos, se usa el método .redirect() en la respuesta. 
+  <!-- Ej.:
+
+  router.post('.login', (req, res)=> {
+    savedUser.email === email && savedUser.password === password
+      ? res.redirect("/profile")
+  })
+   -->
+
+<!-- ---------------------------------------------------------- -->
+<!-- ---------------------------------------------------------- -->
+    // CLASE 20 - Autenticación y autorización //
 
 <!-- PUNTOS CLAVES DE VIDEO:
 -->
@@ -191,6 +237,21 @@ retraso de 4 minutos
 
 - Midlewars son funciones que tienen acceso a los enpoints en todos los modos de peticiones
 - No mostrar secret: Se quitaría de config.js
+
+<!-- ---------------------------------------------------------- -->
+<!-- ---------------------------------------------------------- -->
+
+// CLASE 24 - Práctica integradora //
+<!-- PUNTOS CLAVES DE VIDEO:
+retraso de 4 minutos
+-->
+
+- 00:03:00 -> Resumen de rutas
+
+
+<!-- NOTAS:
+-->
+
 
 <!-- ---------------------------------------------------------- -->
 <!-- ---------------------------------------------------------- -->
