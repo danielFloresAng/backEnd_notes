@@ -215,6 +215,22 @@ PUNTOS CLAVES DE VIDEO:
 - 401 -> Error de autenticación(fallo en datos de usuario)
 - 403 -> Error de autorización(fallo en el nivel de usuario(admin, user, etc...))
 
+- Se crean dos variables iniciales en un archivo utils.js, la primera es para crear un hash y debe contener una función que contenga una contraseña cómo parámetro y en la ejecución se usa el método hashSync() dónde se usa la contraseña y un generador.
+Después se crea otra variable para verificar la contraseña, que contiene la contraseña insertada por el usuario y la contraseña encriptada cómo parámetros y se usa el método compareSync() de bcrypt dónde se usa la contraseña encriptada y la contraseña del usuario para poder compararlas.
+
+<!-- Ej.:
+import bcrypt from "bcrypt";
+
+export const createHash = (password) =>
+  bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+export const isValidPass = (enteredPassword, savedPassword) =>
+  bcrypt.compareSync(savedPassword, savedPassword);
+
+ -->
+
+
+
 <!-- ---------------------------------------------------------- -->
 <!-- ---------------------------------------------------------- -->
 
@@ -247,6 +263,20 @@ retraso de 4 minutos
 -->
 
 - 00:03:00 -> Resumen de rutas
+
+
+<!-- NOTAS:
+-->
+
+
+<!-- ---------------------------------------------------------- -->
+<!-- ---------------------------------------------------------- -->
+// CLASE 25 -  Proceso principal del servidor + Global & Child Process //
+<!-- PUNTOS CLAVES DE VIDEO:
+retraso de 4 minutos
+-->
+
+- 00:040:00 -> Variables de entorno
 
 
 <!-- NOTAS:
