@@ -163,6 +163,7 @@ PUNTOS CLAVES DE VIDEO:
    -->
 
 - Usar connect-mongo en app, persistencia en base de datos
+
   - Instalar ----------------> npm i connect-mongo
   - Importar en app ----------> import MongoStore from "connect-mongo";
   - Configurar uso de persistencia con .use()
@@ -179,18 +180,19 @@ PUNTOS CLAVES DE VIDEO:
       })
        -->
 
-  * Para hacer un login es necesario que la plantilla renderice el req.session para que ésta muestre la información del usuario una vez que éste acceda. 
-  Desde la ruta de '/login' se debe redireccionar al usario a su perfil si es qué el usuario y contraseña son correctos, se usa el método .redirect() en la respuesta. 
+  * Para hacer un login es necesario que la plantilla renderice el req.session para que ésta muestre la información del usuario una vez que éste acceda.
+  Desde la ruta de '/login' se debe redireccionar al usario a su perfil si es qué el usuario y contraseña son correctos, se usa el método .redirect() en la respuesta.
   <!-- Ej.:
 
   router.post('.login', (req, res)=> {
-    savedUser.email === email && savedUser.password === password
-      ? res.redirect("/profile")
+  savedUser.email === email && savedUser.password === password
+  ? res.redirect("/profile")
   })
-   -->
+  -->
 
 <!-- ---------------------------------------------------------- -->
 <!-- ---------------------------------------------------------- -->
+
     // CLASE 20 - Autenticación y autorización //
 
 <!-- PUNTOS CLAVES DE VIDEO:
@@ -203,6 +205,7 @@ PUNTOS CLAVES DE VIDEO:
 - 00:54:00 -> Usar bcrypt
 - 01:07:00 -> Probando autenticación
 - 01:26:00 -> Resolviendo autenticación
+- 01:44:00 -> Passport: modo de autenticación
 
 <!-- NOTAS:
 -->
@@ -216,7 +219,7 @@ PUNTOS CLAVES DE VIDEO:
 - 403 -> Error de autorización(fallo en el nivel de usuario(admin, user, etc...))
 
 - Se crean dos variables iniciales en un archivo utils.js, la primera es para crear un hash y debe contener una función que contenga una contraseña cómo parámetro y en la ejecución se usa el método hashSync() dónde se usa la contraseña y un generador.
-Después se crea otra variable para verificar la contraseña, que contiene la contraseña insertada por el usuario y la contraseña encriptada cómo parámetros y se usa el método compareSync() de bcrypt dónde se usa la contraseña encriptada y la contraseña del usuario para poder compararlas.
+- Después se crea otra variable para verificar la contraseña, que contiene la contraseña insertada por el usuario y la contraseña encriptada cómo parámetros y se usa el método compareSync() de bcrypt dónde se usa la contraseña encriptada y la contraseña del usuario para poder compararlas.
 
 <!-- Ej.:
 import bcrypt from "bcrypt";
@@ -228,8 +231,6 @@ export const isValidPass = (enteredPassword, savedPassword) =>
   bcrypt.compareSync(savedPassword, savedPassword);
 
  -->
-
-
 
 <!-- ---------------------------------------------------------- -->
 <!-- ---------------------------------------------------------- -->
@@ -258,30 +259,43 @@ retraso de 4 minutos
 <!-- ---------------------------------------------------------- -->
 
 // CLASE 24 - Práctica integradora //
+
 <!-- PUNTOS CLAVES DE VIDEO:
 retraso de 4 minutos
 -->
 
 - 00:03:00 -> Resumen de rutas
 
-
 <!-- NOTAS:
 -->
 
+<!-- ---------------------------------------------------------- -->
+<!-- ---------------------------------------------------------- -->
 
-<!-- ---------------------------------------------------------- -->
-<!-- ---------------------------------------------------------- -->
-// CLASE 25 -  Proceso principal del servidor + Global & Child Process //
+// CLASE 25 - Proceso principal del servidor + Global & Child Process //
+
 <!-- PUNTOS CLAVES DE VIDEO:
 retraso de 4 minutos
 -->
 
-- 00:040:00 -> Variables de entorno
-
+- 00:40:00 -> Variables de entorno
+- 00:50:00 -> Acceder a variables de entorno
+- 00:56:00 -> Cómo usar variables de entorno
 
 <!-- NOTAS:
 -->
 
+<Nota: Usando las configuraciones generales en el archivo config.js de forma hardcodeada no es una práctica segura ya que esos datos están a la vista, para esto es posible usar variables de entorno y dar más seguridad a estos datos sensibles.
+
+- Variable de entorno: Nombre o dato que hace referencia a un dato a nivel de sistema operativo, en node se accede a travez de 'process'
+
+- Para acceder a las variables de entorno usamos el archivo .env de nuestra aplicación. El archivo .env se pasa en el archivo .gitignore para no incluirlo en el repositorio
+
+* Opciones nativas de node para usar las variables de entorno alternativas a dotenv:
+  <En línea de comando:
+  - > node --env-file ruta_archivo_env
+  - > node --env-file .env
+  <!-- Esta función está a partir de las últimas versiones de node(>= 22) -->
 
 <!-- ---------------------------------------------------------- -->
 <!-- ---------------------------------------------------------- -->
